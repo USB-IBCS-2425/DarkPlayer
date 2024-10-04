@@ -19,7 +19,12 @@ class Person {
 }
 
 class Student extends Person {
+	double grade;
 
+	public Student(double d) {
+		super();
+		grade = d;
+	}
 }
 
 class notes9_19 {
@@ -28,5 +33,11 @@ class notes9_19 {
 		System.out.println(K.getName());
 		System.out.println(K.getName(true));
 		System.out.println(K.getName(false));
+
+		Scanner s = new Scanner(System.in);
+		double d = nextDouble();
+		Student sigma = new Student(d);
+		System.out.println("This student's grade is " + sigma.grade);
+
 	}
 }
