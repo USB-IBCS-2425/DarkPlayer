@@ -18,9 +18,7 @@ class TwentyQuestions {
             "Kansas City Chiefs", "Las Vegas Raiders", "Los Angeles Chargers", "Denver Broncos",  // AFC West
             "Indianapolis Colts", "Houston Texans", "Tennessee Titans", "Jacksonville Jaguars"    // AFC South
         ));
-        ans = "";
-        cur_pos = new ArrayList<String>(pos); 
-        questions = 0;
+        
     }
 
     public void guess() {
@@ -37,6 +35,10 @@ class TwentyQuestions {
         System.out.println("Your team is the " + ans);
     }
     public void askQuestion() {
+        cur_pos = new ArrayList<String>(pos);
+        ans = "";
+        questions = 0; 
+        
     	String[] queses = {"Is the team in the NFC?", "Is the team in the North or South divisions of their conference?",
     			"Has the team won a Super Bowl?", "Does the team have warm colors (red or orange) as their primary color on any of their jerseys?",
     			"Is the team name an animal?", "Is the team's home stadium in the Western US (relative to Mississipi River)", "Did the team make the playoffs in 2023"
@@ -117,14 +119,15 @@ class TwentyQuestions {
         	if (res) {
         		cur_pos.removeAll(Arrays.asList("Minnesota Vikings",  "Dallas Cowboys", 
 	                "Philadelphia Eagles", "Detroit Lions", "Carolina Panthers", "Seattle Seahawks", "Baltimore Ravens", 
-	               "Indianapolis Colts", "Jacksonville Jaguars", "Las Vegas Raiders", "New Orleans Saints", "Los Angeles Rams"
+	               "Indianapolis Colts", "Jacksonville Jaguars", "Las Vegas Raiders", "New Orleans Saints", "Los Angeles Rams",
+                   "Green Bay Packers","Los Angeles Chargers","Tennessee Titans", "Miami Dolphins", "Pittsburgh Steelers", "Atlanta Falcons"
 
         		));
         	} else {
         		cur_pos.removeAll(Arrays.asList("Chicago Bears", "Arizona Cardinals", "San Francisco 49ers", "Kansas City Chiefs", 
 	        		"Tampa Bay Buccaneers", "Buffalo Bills", "New England Patriots", "Houston Texans", "Washington Commanders", 
-	        		"Cincinnati Bengals", "Cleveland Browns", "Denver Broncos", "New York Giants","Atlanta Falcons","Pittsburgh Steelers","Green Bay Packers",
-                    "Miami Dolphins", "Tennessee Titans", "Los Angeles Chargers"    		
+	        		"Cincinnati Bengals", "Cleveland Browns", "Denver Broncos", "New York Giants"
+                         		
                 ));
         	}
         	
@@ -167,12 +170,12 @@ class TwentyQuestions {
             if (res) {
                 System.out.println("hello");
                 cur_pos.removeAll(Arrays.asList("Arizona Cardinals", "Atlanta Falcons", "Carolina Panthers", "Chicago Bears", "Cleveland Browns", "Denver Broncos", "Detroit Lions", 
-                    "Green Bay Packers", "Houston Texans", "Indianapolis Colts", "Las Vegas Raiders", "Seattle Seahawks", "New England Patriots", "New Orleans Saints", "New York Jets", 
-                    "Pittsburgh Steelers", "Tennessee Titans", "Washington Commanders"
+                     "Houston Texans", "Indianapolis Colts", "Las Vegas Raiders", "Seattle Seahawks", "New England Patriots", "New Orleans Saints", "New York Jets", 
+                    "Pittsburgh Steelers", "Tennessee Titans", "Washington Commanders", "Minnesota Vikings"
                 ));
             } else {
                 cur_pos.removeAll(Arrays.asList("Kansas City Chiefs", "Buffalo Bills", "Cincinnati Bengals", "Jacksonville Jaguars", "Baltimore Ravens", "Miami Dolphins", 
-                    "Los Angeles Chargers", "Philadelphia Eagles", "San Francisco 49ers", "Dallas Cowboys", "Minnesota Vikings", "Tampa Bay Buccaneers", "New York Giants", 
+                    "Los Angeles Chargers", "Philadelphia Eagles", "San Francisco 49ers", "Dallas Cowboys", "Green Bay Packers", "Tampa Bay Buccaneers", "New York Giants", 
                     "Los Angeles Rams"
                 ));
             }
@@ -185,8 +188,18 @@ class TwentyQuestions {
 
     public static void main(String[] args) {
         TwentyQuestions game = new TwentyQuestions();
-        game.askQuestion();
-        game.guess();
+        boolean playing = true;
+        Scanner sc = new Scanner(System.in);
+
+        while (playing) {
+            game.askQuestion();
+            game.guess();
+            System.out.println("Would you like to keep playing? (yes/no): ");
+            String response = sc.nextLine();
+            playing = response.equals("yes");
+        }
+
+        
 
         
     }
