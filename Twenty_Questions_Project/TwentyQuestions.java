@@ -38,7 +38,7 @@ class TwentyQuestions {
         cur_pos = new ArrayList<String>(pos);
         ans = "";
         questions = 0; 
-        
+
     	String[] queses = {"Is the team in the NFC?", "Is the team in the North or South divisions of their conference?",
     			"Has the team won a Super Bowl?", "Does the team have warm colors (red or orange) as their primary color on any of their jerseys?",
     			"Is the team name an animal?", "Is the team's home stadium in the Western US (relative to Mississipi River)", "Did the team make the playoffs in 2023"
@@ -169,14 +169,14 @@ class TwentyQuestions {
 
             if (res) {
                 System.out.println("hello");
-                cur_pos.removeAll(Arrays.asList("Arizona Cardinals", "Atlanta Falcons", "Carolina Panthers", "Chicago Bears", "Cleveland Browns", "Denver Broncos", "Detroit Lions", 
-                     "Houston Texans", "Indianapolis Colts", "Las Vegas Raiders", "Seattle Seahawks", "New England Patriots", "New Orleans Saints", "New York Jets", 
-                    "Pittsburgh Steelers", "Tennessee Titans", "Washington Commanders", "Minnesota Vikings"
+                cur_pos.removeAll(Arrays.asList("Arizona Cardinals", "Atlanta Falcons", "Carolina Panthers", "Chicago Bears", "Denver Broncos", "Detroit Lions", 
+                      "Indianapolis Colts", "Las Vegas Raiders", "Seattle Seahawks", "New England Patriots", "New Orleans Saints", "New York Jets", 
+                    "Tennessee Titans", "Washington Commanders", "Minnesota Vikings", "Jacksonville Jaguars"
                 ));
             } else {
-                cur_pos.removeAll(Arrays.asList("Kansas City Chiefs", "Buffalo Bills", "Cincinnati Bengals", "Jacksonville Jaguars", "Baltimore Ravens", "Miami Dolphins", 
-                    "Los Angeles Chargers", "Philadelphia Eagles", "San Francisco 49ers", "Dallas Cowboys", "Green Bay Packers", "Tampa Bay Buccaneers", "New York Giants", 
-                    "Los Angeles Rams"
+                cur_pos.removeAll(Arrays.asList("Kansas City Chiefs", "Buffalo Bills" , "Baltimore Ravens", "Miami Dolphins", 
+                    "Philadelphia Eagles", "San Francisco 49ers", "Dallas Cowboys", "Green Bay Packers", "Tampa Bay Buccaneers",
+                    "Los Angeles Rams","Pittsburgh Steelers", "Houston Texans", "Cleveland Browns"
                 ));
             }
         }
