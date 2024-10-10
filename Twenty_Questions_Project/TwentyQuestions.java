@@ -41,7 +41,7 @@ class TwentyQuestions {
 
     	String[] queses = {"Is the team in the NFC?", "Is the team in the North or South divisions of their conference?",
     			"Has the team won a Super Bowl?", "Does the team have red or orange as their primary color on any of their jerseys or helmets?",
-    			"Is the team name an animal?", "Is the team's home stadium in the Western US (relative to Mississipi River)", "Did the team make the playoffs in 2023"
+    			"Is the team name an animal?", "Is the team's home stadium in the Western US (relative to Mississipi River)", "Did the team make the playoffs in the 2023-24 season?"
 		};
         
         Scanner s = new Scanner(System.in);
@@ -165,7 +165,7 @@ class TwentyQuestions {
         	}
         }
         //Question 7 (make everything unique)
-        else if (ques.equals("Did the team make the playoffs in 2023")) {
+        else if (ques.equals("Did the team make the playoffs in the 2023-24 season?")) {
 
             if (res) {
                 System.out.println("hello");
