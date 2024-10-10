@@ -29,10 +29,10 @@ class TwentyQuestions {
             ans = "Sorry I couldn't figure it out.";
         }
         else {
-            ans = cur_pos.get(0);
+            ans = "Your team is " + cur_pos.get(0);
         }
 
-        System.out.println("Your team is the " + ans);
+        System.out.println(ans);
     }
     public void askQuestion() {
         cur_pos = new ArrayList<String>(pos);
@@ -40,7 +40,7 @@ class TwentyQuestions {
         questions = 0; 
 
     	String[] queses = {"Is the team in the NFC?", "Is the team in the North or South divisions of their conference?",
-    			"Has the team won a Super Bowl?", "Does the team have warm colors (red or orange) as their primary color on any of their jerseys?",
+    			"Has the team won a Super Bowl?", "Does the team have red or orange as their primary color on any of their jerseys or helmets?",
     			"Is the team name an animal?", "Is the team's home stadium in the Western US (relative to Mississipi River)", "Did the team make the playoffs in 2023"
 		};
         
@@ -115,18 +115,18 @@ class TwentyQuestions {
         	}
         }
         //Question 4
-        else if (ques.equals("Does the team have warm colors (red or orange) as their primary color on any of their jerseys?")) {
+        else if (ques.equals("Does the team have red or orange as their primary color on any of their jerseys or helmets?")) {
         	if (res) {
         		cur_pos.removeAll(Arrays.asList("Minnesota Vikings",  "Dallas Cowboys", 
 	                "Philadelphia Eagles", "Detroit Lions", "Carolina Panthers", "Seattle Seahawks", "Baltimore Ravens", 
 	               "Indianapolis Colts", "Jacksonville Jaguars", "Las Vegas Raiders", "New Orleans Saints", "Los Angeles Rams",
-                   "Green Bay Packers","Los Angeles Chargers","Tennessee Titans", "Miami Dolphins", "Pittsburgh Steelers", "Atlanta Falcons"
+                   "Green Bay Packers","Los Angeles Chargers","Tennessee Titans", "Miami Dolphins", "Pittsburgh Steelers", "New York Jets", "New York Giants"
 
         		));
         	} else {
         		cur_pos.removeAll(Arrays.asList("Chicago Bears", "Arizona Cardinals", "San Francisco 49ers", "Kansas City Chiefs", 
 	        		"Tampa Bay Buccaneers", "Buffalo Bills", "New England Patriots", "Houston Texans", "Washington Commanders", 
-	        		"Cincinnati Bengals", "Cleveland Browns", "Denver Broncos", "New York Giants"
+	        		"Cincinnati Bengals", "Cleveland Browns", "Denver Broncos", "Atlanta Falcons"
                          		
                 ));
         	}
@@ -139,7 +139,7 @@ class TwentyQuestions {
 
         		cur_pos.removeAll(Arrays.asList("Dallas Cowboys", "New York Giants", "San Francisco 49ers", "Kansas City Chiefs", "Tampa Bay Buccaneers", 
         			"New England Patriots", "Washington Commanders", "Cleveland Browns", "Green Bay Packers", "Minnesota Vikings", "Pittsburgh Steelers", 
-        			"Indianapolis Colts", "Las Vegas Raiders", "Los Angeles Chargers","Tennessee Titans", "Houston Texans", "Buffalo Bills"
+        			"Indianapolis Colts", "Las Vegas Raiders", "Los Angeles Chargers","Tennessee Titans", "Houston Texans", "Buffalo Bills", "New York Jets"
         		));
         	} else {
         		
@@ -169,14 +169,14 @@ class TwentyQuestions {
 
             if (res) {
                 System.out.println("hello");
-                cur_pos.removeAll(Arrays.asList("Arizona Cardinals", "Atlanta Falcons", "Carolina Panthers", "Chicago Bears", "Denver Broncos", "Detroit Lions", 
+                cur_pos.removeAll(Arrays.asList("Arizona Cardinals", "Atlanta Falcons", "Carolina Panthers", "Chicago Bears", "Denver Broncos", 
                       "Indianapolis Colts", "Las Vegas Raiders", "Seattle Seahawks", "New England Patriots", "New Orleans Saints", "New York Jets", 
                     "Tennessee Titans", "Washington Commanders", "Minnesota Vikings", "Jacksonville Jaguars"
                 ));
             } else {
                 cur_pos.removeAll(Arrays.asList("Kansas City Chiefs", "Buffalo Bills" , "Baltimore Ravens", "Miami Dolphins", 
                     "Philadelphia Eagles", "San Francisco 49ers", "Dallas Cowboys", "Green Bay Packers", "Tampa Bay Buccaneers",
-                    "Los Angeles Rams","Pittsburgh Steelers", "Houston Texans", "Cleveland Browns"
+                    "Los Angeles Rams","Pittsburgh Steelers", "Houston Texans", "Cleveland Browns", "Detroit Lions"
                 ));
             }
         }
