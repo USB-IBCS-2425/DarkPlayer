@@ -21,15 +21,21 @@ class Sorting {
 	}
 
 	public static void main(String[] args) {
-		
-		ArrayList<Integer> array = new ArrayList<Integer>(10);
-		for (int i = 0; i < 10; i++) {
-			int newadd = (int)(Math.random()*100);
-			array.add(newadd);
+		long avg = 0;
+		for (int j = 0; j < 10; j++) {
+			ArrayList<Integer> array = new ArrayList<Integer>(2000);
+			for (int i = 0; i < 2000; i++) {
+				int newadd = (int)(Math.random()*100);
+				array.add(newadd);
+			}
+			//System.out.println(array);
+			long start = System.nanoTime();
+			ArrayList<Integer> newarr = BubbleSort(array);
+			System.out.println(System.nanoTime()-start);
 		}
-		System.out.println(array);
-		long start = System.nanoTime();
-		System.out.println(BubbleSort(array));
-		System.out.println("Ran in " + (long)(System.nanoTime()-start) + " nano seconds");
+		//System.out.println(avg/10);
+		
+		//System.out.println(BubbleSort(array));
+		//System.out.println("Ran in " + (long)(System.nanoTime()-start) + " nano seconds");
 	}
 }
