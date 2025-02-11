@@ -1,0 +1,62 @@
+# Unity Generated Files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# Visual Studio / Rider
+.vscode/
+*.csproj
+*.sln
+*.unityproj
+*.user
+*.suo
+*.tmp
+*.booproj
+*.svd
+*.pidb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity Smart Merge
+*.bak
+*.bak.*
+
+# Crash Reports
+CrashReports/
+
+# Unity Asset Files
+/[Aa]ssets/[Ss]treaming[Aa]ssets/*
+
+# Ignore all .meta files except in Assets and Packages
+!/[Aa]ssets/**/*.meta
+!/[Pp]ackages/**/*.meta
+
+# Unity Package Manager
+Packages/
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Log Files
+*.log
+*.log.*
+
+# Generated Lightmaps
+/[Aa]ssets/**/LightingData.asset
+/[Aa]ssets/**/ReflectionProbe-*.*
+
+# Shader Cache
+/[Aa]ssets/**/ShaderCache/
+
+# Exclude Build Artifacts
+/[Aa]ssets/Scenes/*.unity.bak
+
+# TextMeshPro auto-generated files
+/[Aa]ssets/TextMesh Pro/*/Resources/*.asset
+
+# Play Mode Editor Scripts
+/[Aa]ssets/**/Editor/PlayModeState/*.asset

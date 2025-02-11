@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.event.*;
 
-class ImageEditing {
+class ImageEditingProject {
     private JFrame startFrame;
     private JLabel welcomeText;
     private ImageIcon icon;
@@ -33,7 +33,7 @@ class ImageEditing {
     private JButton saturate;
 
 
-    public ImageEditing() {
+    public ImageEditingProject() {
         startFrame = new JFrame("Image Example");
         startFrame.setSize(400, 400);
         startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,8 +86,8 @@ class ImageEditing {
 
 
         try {
-            im = ImageIO.read(new File("Antarctica.png"));
-            original = ImageIO.read(new File("daisy.png"));
+            im = ImageIO.read(new File("AntarcticaCS.png"));
+            original = ImageIO.read(new File("AntarcticaCS.png"));
             icon = new ImageIcon(im);
         } catch (IOException e) {
             System.out.println("Error reading image: " + e.getMessage());
@@ -105,7 +105,7 @@ class ImageEditing {
     }
 
     public static void main(String[] args) {
-        new ImageEditing();
+        new ImageEditingProject();
     }
 
     private class ButtonClickListener implements ActionListener {
@@ -308,3 +308,5 @@ class ImageEditing {
         
     }
 }
+
+
