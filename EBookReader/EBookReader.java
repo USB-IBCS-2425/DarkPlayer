@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
+/*Important*/
+// Below are the 5 book files
+// GreatGatsby.txt, MobyDick.txt, LittleWomen.txt, Frankenstein.txt, PridePrejudice.txt
 
 class EBookReader {
     public JFrame mainframe;
