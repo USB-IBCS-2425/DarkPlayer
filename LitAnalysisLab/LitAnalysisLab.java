@@ -21,6 +21,7 @@ class LitAnalysisLab {
     public JButton leastVB;
     public JButton avgSB;
     public JButton uniqueB;
+    public JButton partsB;
 
     public static JTextField toRead;
     public static JTextArea resultT;
@@ -118,6 +119,12 @@ class LitAnalysisLab {
         uniqueB.addActionListener(new ButtonClickListener());
         uniqueB.setBounds(620, 250, 100, 100);
         mainframe.add(uniqueB);
+
+        partsB = new JButton("Part of Speech");
+        partsB.setActionCommand("PARTS");
+        partsB.addActionListener(new ButtonClickListener());
+        partsB.setBounds(740, 250, 100, 100);
+        mainframe.add(partsB);
 
 
 
@@ -370,87 +377,135 @@ class LitAnalysisLab {
     }
 
     public static void avgSentence() {
-        int astrikCount = 0;
-        double runningCount = 0;
-        int numSent = 0;
-        int curSent = 0;
-        for (String token : textTokens) {
-            String[] tempWords = token.split("\\s+|--|[-–—]");  // Splits by spaces, --
-            for (String s : tempWords) {
-                if (s.equals("***")) {astrikCount++; continue;}
-                if (astrikCount != 2) {continue;}
-                if (s.length() > 1) { // Ensure it's not an empty string
-                    for (int i = 0; i < s.length(); i++) {
-                        if (s.charAt(i) == '?' || s.charAt(i) == '.' || s.charAt(i) == '!') {
-                            if (curSent < 3) {numSent--; runningCount-=curSent;}
-                            curSent = 0;
+    int astrikCount = 0;
+    double runningCount = 0;
+    int numSent = 0;
+    int curSent = 0;
+    for (String token : textTokens) {
+        String[] tempWords = token.split("\\s+|--|[-–—]");  // Splits by spaces, --
+        for (String s : tempWords) {
+            if (s.equals("***")) {
+                astrikCount++; 
+                continue;
+            }
+            if (astrikCount != 2) {
+                continue;
+            }
+            if (s.length() > 0) { 
+                boolean foundEndMark = false;
+                for (int i = 0; i < s.length(); i++) {
+                    if (s.charAt(i) == '?' || s.charAt(i) == '.' || s.charAt(i) == '!') {
+                        foundEndMark = true;
+                        if (curSent > 1) { 
                             numSent++;
-                            break;
+                            runningCount += curSent;
                         }
+                        curSent = 0;
+                        break;
                     }
-                    curSent++;
-                    runningCount++;
                 }
-                
+                if (!foundEndMark) {
+                    curSent++;
+                }
             }
         }
-        String res = "The average sentence length is: " + String.valueOf(runningCount/numSent);
-
-        resultT.setText(res);
     }
+    
+    String res = "The average sentence length is: " + (numSent > 0 ? String.valueOf(runningCount/numSent) : "0");
+    resultT.setText(res);
+}
 
     public static void mostUnique() {
-        double min_uniqueInd = 2147483647;
+        double min_uniqueInd = Double.MAX_VALUE; // Using MAX_VALUE instead of magic number
         double cur_uniqueInd = 0;
-
         ArrayList<String> uniqueSent = new ArrayList<>();
         ArrayList<String> curSent = new ArrayList<>();
-
         // getting rid of the header and footer
         int astrikCount = 0;
-
         for (String token : textTokens) {
             String[] tempWords = token.split("\\s+|--|[-–—]");  // Splits by spaces, --
             for (String s : tempWords) {
-                if (!s.isEmpty()) { // Ensure it's not an empty string
-                    if (s.equals("***")) {astrikCount++; continue;}
-                    if (astrikCount != 2) {continue;}
-                    boolean end = false;
-                    for (int i = 0; i < s.length(); i++) {
-                        if (s.charAt(i) == '?' || s.charAt(i) == '.' || s.charAt(i) == '!') {
-                            end = true;
-                            break;
-                        }
+                if (s.isEmpty()) continue; // Skip empty strings
+                
+                if (s.equals("***")) {
+                    astrikCount++; 
+                    continue;
+                }
+                if (astrikCount != 2) {
+                    continue;
+                }
+                
+                boolean end = false;
+                String originalWord = s; // Save original word before cleaning
+                
+                // Check for sentence ending punctuation
+                for (int i = 0; i < s.length(); i++) {
+                    if (s.charAt(i) == '?' || s.charAt(i) == '.' || s.charAt(i) == '!') {
+                        end = true;
+                        break;
                     }
-                    s = s.replaceAll("[\\p{P}_]", "");
-                    s = s.toLowerCase();
+                }
+                
+                // Keep only allowed punctuation: comma, semicolon, quotes, colon
+                s = s.replaceAll("[\\p{P}]", "");
+                s = s.toLowerCase();
+                
+                // Don't add empty strings after cleaning
+                if (!s.isEmpty()) {
                     curSent.add(s);
-
                     cur_uniqueInd += wordFrequency.getOrDefault(s, 0);
-                    if (end){
-                        if (curSent.size() >= 8) {
-                            System.out.println(cur_uniqueInd);
+                }
+                
+                if (end) {
+                    if (curSent.size() >= 8) {
+                        if (curSent.size() > 0) { // Avoid division by zero
                             cur_uniqueInd /= curSent.size();
                             if (cur_uniqueInd < min_uniqueInd) {
+                                System.out.println(cur_uniqueInd);
                                 min_uniqueInd = cur_uniqueInd;
                                 uniqueSent = new ArrayList<>(curSent);
                             }
                         }
-                        
-                        cur_uniqueInd = 0;
-                        curSent.clear();
                     }
                     
+                    cur_uniqueInd = 0;
+                    curSent.clear();
                 }
-                
             }
         }
+        
+        // Handle any final sentence without ending punctuation
+        if (curSent.size() >= 8) {
+            if (curSent.size() > 0) {
+                cur_uniqueInd /= curSent.size();
+                if (cur_uniqueInd < min_uniqueInd) {
 
+                    min_uniqueInd = cur_uniqueInd;
+                    uniqueSent = new ArrayList<>(curSent);
+                }
+            }
+        }
+        
         String res = "The most unique sentence is: ";
-        for (int i = 0; i < uniqueSent.size(); i++) {
-            res += uniqueSent.get(i) + " ";
+        for (String word : uniqueSent) {
+            res += word + " ";
         }
         resultT.setText(res);
+    }
+
+    public static void partsOfSpeech() {
+        
+        for (int i = 0; i < allwords.size(); i++) {
+            if (wordFrequency.get(allwords.get(i)) > 10) {
+                allwords.set(i, allwords.get(i) + " (noun)");
+            }
+            else if (wordFrequency.get(allwords.get(i)) < 10 && wordFrequency.get(allwords.get(i)) > 5) {
+                allwords.set(i, allwords.get(i) + " (verb)");
+            }
+            else if (wordFrequency.get(allwords.get(i)) < 5) {
+                allwords.set(i, allwords.get(i) + " (adj)");
+            }
+        }
     }
 
     private class ButtonClickListener implements ActionListener {
@@ -496,6 +551,11 @@ class LitAnalysisLab {
             }
             if (command.equals("UNIQUE")) {
                 mostUnique();
+            }
+
+            if (command.equals("PARTS")) {
+                partsOfSpeech();
+                printBook();
             }
         }
     }
