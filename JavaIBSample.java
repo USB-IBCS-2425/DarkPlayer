@@ -26,6 +26,8 @@ class JavaIBSample {
 
 	public static String[] ShiftX(int x, String[] arr) {
 		String[] new_arr = new String[arr.length];
+
+		x %= arr.length;
 		for (int i = 0; i < arr.length-x; i++) {
 			new_arr[i+x] = arr[i];
 		}
@@ -42,6 +44,9 @@ class JavaIBSample {
 		int[] new_arr = new int[a.length + b.length];
 		for (int i = 0; i < a.length; i++) {
 			new_arr[i] = a[i];
+			
+		}
+		for (int i = 0; i < b.length; i++) {
 			new_arr[a.length + i] = b[i];
 		}
 
@@ -121,7 +126,8 @@ class JavaIBSample {
 
 
 	public static void main(String[] args) {
-		int[] arr = {1,3,3,5,-6};
+		int[] arr = {1,2,3,-1,-2,-3,5,-5,0};
+
 		ArrayList<int[]> sols = threeSum(arr);
 		for (int i = 0; i < sols.size(); i++) {
 			for (int j = 0; j < 3; j++) {
